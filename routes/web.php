@@ -30,4 +30,9 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/admin', [\App\Http\Controllers\Admin\AdminController::class, 'index']);
+
+
+Route::group(['prefix' => 'admin'], static function ($router) {
+    $router->get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index']);
+    $router->resource('/users', \App\Http\Controllers\Admin\UserController::class)->except('show');
+});

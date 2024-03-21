@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +22,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
+        'mobile',
+        'phone',
+        'image',
+        'is_admin',
+        'whatsapp',
+        'telegram',
+        'instagram',
+        'status'
     ];
 
     /**
@@ -42,4 +52,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getCreateAtShamsi(): Verta
+    {
+        return new Verta($this->created_at);
+    }
 }
