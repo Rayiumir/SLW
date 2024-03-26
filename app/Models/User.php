@@ -72,8 +72,8 @@ class User extends Authenticatable
                 $constraint->aspectRatio();
             });
 
-            Storage::disk('local')->put('users/small/'.$name, (string) $smallImage->encode('png', 90));
-            Storage::disk('local')->put('users/big/'.$name, (string) $bigImage->encode('png', 90));
+            Storage::disk('local')->put('users/small/'.$name, (string) $smallImage->encodeByMediaType('image/jpeg', 90));
+            Storage::disk('local')->put('users/big/'.$name, (string) $bigImage->encodeByMediaType('image/jpeg', 90));
 
             return $name;
 

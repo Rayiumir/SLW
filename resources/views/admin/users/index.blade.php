@@ -18,7 +18,11 @@
             @foreach($users as $index=>$row)
                 <tr>
                     <th scope="row">{{$users->firstItem()+$index}}</th>
-                    <td>Mark</td>
+                    <td>
+                        <figure>
+                            <img src="{{asset('images/users/small/' .$row->image)}}" class="rounded-4" width="52px">
+                        </figure>
+                    </td>
                     <td>{{$row->name}}</td>
                     <td>{{$row->email}}</td>
                     <td>{{$row->mobile}}</td>
