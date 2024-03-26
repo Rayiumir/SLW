@@ -1,5 +1,5 @@
 <x-AdminLayout>
-    <button type="button" class="btn btn-primary rounded-5"><i class="fa-duotone fa-user-plus"></i> افزودن کاربر </button>
+    <a href="{{ route('users.create') }}" type="button" class="btn btn-primary rounded-5"><i class="fa-duotone fa-user-plus"></i> افزودن کاربر </a>
     <table class="table table-bordered mt-2 text-center">
         <thead>
             <tr>
@@ -33,7 +33,7 @@
                     <td>{{$row->getCreateAtShamsi()}}</td>
                     <td>
                         <button type="button" class="btn btn-primary btn-sm rounded-5" title="ویرایش کاربر"><i class="fa-duotone fa-edit"></i></button>
-                        <button type="button" class="btn btn-primary btn-sm rounded-5" title="حذف کاربر"><i class="fa-duotone fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm rounded-5" title="حذف کاربر"><i class="fa-duotone fa-trash"></i></button>
                     </td>
                 </tr>
             @endforeach

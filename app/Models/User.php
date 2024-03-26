@@ -6,7 +6,10 @@ namespace App\Models;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -56,5 +59,26 @@ class User extends Authenticatable
     public function getCreateAtShamsi(): Verta
     {
         return new Verta($this->created_at);
+    }
+
+    public static function saveImage($file)
+    {
+        if ($file){
+            $name = $file->hashName();
+
+            $smallImage = ImageManager::imagick()->read($file->getRealPath());
+            $bigImage = ImageManager::imagick()->read($file->getRealPath());
+            $smallImage->resize(256, 256, function ($constraint){
+                $constraint->aspectRatio();
+            });
+
+            Storage::disk('local')->put('users/small/'.$name, (string) $smallImage->encode('png', 90));
+            Storage::disk('local')->put('users/big/'.$name, (string) $bigImage->encode('png', 90));
+
+            return $name;
+
+        }else{
+            return "";
+        }
     }
 }
