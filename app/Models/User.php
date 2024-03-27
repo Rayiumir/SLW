@@ -81,4 +81,15 @@ class User extends Authenticatable
             return "";
         }
     }
+
+    public static function createUser($request): void
+    {
+        User::query()->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'password' => bcrypt($request->password),
+            'image' => self::saveImage($request->file),
+        ]);
+    }
 }

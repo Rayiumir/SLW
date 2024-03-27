@@ -30,16 +30,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $image = User::saveImage($request->image);
-
-        User::query()->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'mobile' => $request->mobile,
-            'password' => bcrypt($request->password),
-            'image' => $image,
-        ]);
-
+        User::createUser($request);
         return to_route('users.index');
     }
 
