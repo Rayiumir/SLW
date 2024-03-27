@@ -89,7 +89,7 @@ class User extends Authenticatable
             'email' => $request->email,
             'mobile' => $request->mobile,
             'password' => bcrypt($request->password),
-            'image' => self::saveImage($request->file),
+            'image' => self::saveImage($request->image),
         ]);
     }
 }
